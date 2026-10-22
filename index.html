@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="ru" data-bg="aurora" data-noise="on">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07070b" />
+    <meta
+      name="description"
+      content="Street Launcher — современный лаунчер Minecraft. Все версии, готовые сборки, моды, 3D-скины и друзья в одном интерфейсе."
+    />
+    <title>Street Launcher — Minecraft без границ</title>
+    <link rel="icon" type="image/png" href="assets/icon.png" />
+    <link rel="preload" href="assets/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <svg class="svg-sprite" aria-hidden="true">
+      <symbol id="i-download" viewBox="0 0 24 24">
+        <path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24">
+        <path d="M5 12h14m0 0-5.5-5.5M19 12l-5.5 5.5" />
+      </symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24">
+        <path d="m12 3 1.7 5.3L19 10l-5.3 1.7L12 17l-1.7-5.3L5 10l5.3-1.7L12 3Z" />
+        <path d="m19 15 .9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15Z" />
+      </symbol>
+      <symbol id="i-palette" viewBox="0 0 24 24">
+        <path d="M12 3a9 9 0 1 0 0 18h1.6a2.4 2.4 0 0 0 1.9-3.9 2.4 2.4 0 0 1 1.9-3.9H19a2 2 0 0 0 2-2A9 9 0 0 0 12 3Z" />
+        <circle cx="7.5" cy="11" r="1" /><circle cx="10" cy="7" r="1" /><circle cx="15" cy="7" r="1" /><circle cx="17" cy="11.5" r="1" />
+      </symbol>
+      <symbol id="i-users" viewBox="0 0 24 24">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" />
+        <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+      </symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24">
+        <path d="m12 2 9 5-9 5-9-5 9-5Z" /><path d="m3 12 9 5 9-5M3 17l9 5 9-5" />
+      </symbol>
+      <symbol id="i-box" viewBox="0 0 24 24">
+        <path d="m21 8-9-5-9 5v8l9 5 9-5V8Z" /><path d="m3 8 9 5 9-5M12 13v8" />
+      </symbol>
+      <symbol id="i-shirt" viewBox="0 0 24 24">
+        <path d="M8 3 4 5 2 9l3 1v10h14V10l3-1-2-4-4-2a5 5 0 0 1-8 0Z" />
+      </symbol>
+      <symbol id="i-zap" viewBox="0 0 24 24">
+        <path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12L13 2Z" />
+      </symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24">
+        <path d="M12 3 5 6v5c0 4.5 2.9 8.4 7 10 4.1-1.6 7-5.5 7-10V6l-7-3Z" /><path d="m9 12 2 2 4-4" />
+      </symbol>
+      <symbol id="i-gamepad" viewBox="0 0 24 24">
+        <path d="M7 8h10a5 5 0 0 1 4.9 6l-.7 3a2.7 2.7 0 0 1-4.6 1.2L15 16H9l-1.6 2.2a2.7 2.7 0 0 1-4.6-1.2l-.7-3A5 5 0 0 1 7 8Z" />
+        <path d="M8 11v4M6 13h4M15.5 12h.01M18 14h.01" />
+      </symbol>
+      <symbol id="i-monitor" viewBox="0 0 24 24">
+        <rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" />
+      </symbol>
+      <symbol id="i-grid" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="7" height="7" rx="1.5" /><rect x="14" y="3" width="7" height="7" rx="1.5" /><rect x="3" y="14" width="7" height="7" rx="1.5" /><rect x="14" y="14" width="7" height="7" rx="1.5" />
+      </symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" /></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4.5 4.5L19 7" /></symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" /></symbol>
+      <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 7v5h-5M4 17v-5h5" /><path d="M18.4 9A8 8 0 0 0 5.6 7M5.6 15A8 8 0 0 0 18.4 17" /></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2.5" /><path d="M8 10V7a4 4 0 0 1 8 0v3" /></symbol>
+    </svg>
+
+    <div class="page-bg" aria-hidden="true">
+      <div class="bg-base"></div>
+      <div class="orb orb-a"></div>
+      <div class="orb orb-b"></div>
+      <div class="orb orb-c"></div>
+      <div class="bg-grid"></div>
+      <div class="bg-scan"></div>
+      <div class="bg-noise"></div>
+    </div>
+
+    <header class="topbar" id="topbar">
+      <a class="brand" href="#top" aria-label="Street Launcher — на главную">
+        <img src="assets/icon.png" alt="" width="34" height="34" />
+        <span class="brand-name">STREET<em>LAUNCHER</em></span>
+        <span class="brand-tag">STR // 1.1</span>
+      </a>
+      <nav class="main-nav" aria-label="Основная навигация">
+        <a href="#features">Возможности</a>
+        <a href="#showcase">Интерфейс</a>
+        <a href="#modpacks">Сборки</a>
+        <a href="#friends">Друзья</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="topbar-actions">
+        <button class="btn btn-ghost btn-sm theme-trigger" type="button" data-open-theme>
+          <svg class="icon"><use href="#i-palette" /></svg>
+          <span>Тема</span>
+        </button>
+        <a class="btn btn-primary btn-sm topbar-download" href="#download">
+          <svg class="icon"><use href="#i-download" /></svg>
+          <span>Скачать</span>
+        </a>
+        <button class="icon-btn menu-btn" type="button" aria-label="Меню" aria-expanded="false" data-menu>
+          <svg class="icon"><use href="#i-menu" /></svg>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="top">
+        <div class="hero-copy reveal">
+          <span class="eyebrow"><span class="live-dot"></span> Minecraft-лаунчер нового поколения</span>
+          <h1>Minecraft<br /><span class="grad">твоего стиля.</span></h1>
+          <p class="lead">
+            Все версии, готовые сборки, моды и друзья — в одном лаунчере. Без лишнего шума,
+            с чистым интерфейсом и автоматическими обновлениями.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="downloads/StreetLauncher-Setup-1.1.1.exe" download>
+              <svg class="icon"><use href="#i-download" /></svg>
+              Скачать для Windows
+            </a>
+            <a class="btn btn-glass btn-lg" href="#features">
+              <svg class="icon"><use href="#i-spark" /></svg>
+              Возможности
+            </a>
+          </div>
+          <div class="hero-meta">
+            Windows 10/11 · 1.8.9–26.3 · Оффлайн, Ely.by и Microsoft
+          </div>
+          <div class="hero-stats">
+            <div><strong>6</strong><span>загрузчиков</span></div>
+            <div><strong>1.8.9–26.3</strong><span>версии игры</span></div>
+            <div><strong>Modrinth</strong><span>моды и сборки</span></div>
+            <div><strong>100%</strong><span>бесплатно</span></div>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal reveal-delay">
+          <div class="app-frame hero-frame">
+            <div class="frame-bar">
+              <span class="frame-dots"><i></i><i></i><i></i></span>
+              <span class="frame-title">Street Launcher — Главная</span>
+              <span class="frame-status"><span class="live-dot"></span> в сети</span>
+            </div>
+            <div class="frame-body">
+              <img src="assets/shots/home.png" alt="Главный экран Street Launcher с активной сборкой Fabulously Optimized" width="1320" height="840" />
+            </div>
+          </div>
+          <div class="float-card float-theme">
+            <span class="float-icon"><svg class="icon"><use href="#i-palette" /></svg></span>
+            <span><b>Neon Red</b><small>тема активна</small></span>
+            <span class="swatches"><i style="--c:#ff3d63"></i><i style="--c:#ff7a45"></i></span>
+          </div>
+          <div class="float-card float-friend">
+            <span class="mini-avatar">
+              <img src="https://mc-heads.net/avatar/Notch/48" alt="" width="32" height="32" loading="lazy" />
+            </span>
+            <span><b>Notch</b><small>Minecraft · Fabulously Optimized</small></span>
+            <span class="status-chip is-online"><i></i> в сети</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>FABRIC</span><i></i><span>FORGE</span><i></i><span>NEOFORGE</span><i></i><span>OPTIFINE</span><i></i><span>MODRINTH</span><i></i><span>ELY.BY</span><i></i><span>MICROSOFT</span><i></i>
+          <span>FABRIC</span><i></i><span>FORGE</span><i></i><span>NEOFORGE</span><i></i><span>OPTIFINE</span><i></i><span>MODRINTH</span><i></i><span>ELY.BY</span><i></i><span>MICROSOFT</span><i></i>
+        </div>
+      </div>
+
+      <section class="section" id="features">
+        <div class="section-head reveal">
+          <span class="eyebrow"><svg class="icon"><use href="#i-spark" /></svg> Всё в одном месте</span>
+          <h2>Больше игры. Меньше возни.</h2>
+          <p>Лаунчер берёт на себя Java, библиотеки, моды и обновления. Вам остаётся выбрать, во что играть.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card reveal">
+            <span class="feature-icon"><svg class="icon"><use href="#i-layers" /></svg></span>
+            <h3>Все версии и загрузчики</h3>
+            <p>Vanilla, Fabric, Forge, NeoForge, OptiFine и Forge + OptiFine. Java и библиотеки ставятся автоматически.</p>
+            <span class="feature-tag">1.8.9 → 26.3</span>
+          </article>
+          <article class="feature-card reveal">
+            <span class="feature-icon"><svg class="icon"><use href="#i-box" /></svg></span>
+            <h3>Готовые сборки</h3>
+            <p>Оптимизация, приключения, квесты и технологии из каталога Modrinth. Установка в один клик вместе с модами.</p>
+            <span class="feature-tag">Modrinth</span>
+          </article>
+          <article class="feature-card reveal">
+            <span class="feature-icon"><svg class="icon"><use href="#i-users" /></svg></span>
+            <h3>Друзья в реальном времени</h3>
+            <p>Добавьте друга по нику и видьте, кто открыл лаунчер, а у кого уже запущен Minecraft.</p>
+            <span class="feature-tag">онлайн-статусы</span>
+          </article>
+          <article class="feature-card reveal">
+            <span class="feature-icon"><svg class="icon"><use href="#i-shirt" /></svg></span>
+            <h3>3D-скины</h3>
+            <p>Загрузите скин, крутите модель мышкой и включайте анимации прямо на главном экране.</p>
+            <span class="feature-tag">skinview3d</span>
+          </article>
+          <article class="feature-card reveal">
+            <span class="feature-icon"><svg class="icon"><use href="#i-palette" /></svg></span>
+            <h3>Своя тема</h3>
+            <p>Пресеты, собственные цвета, фон, стекло и скругления. Интерфейс подстраивается под ваш стиль.</p>
+            <span class="feature-tag">кастомизация</span>
+          </article>
+          <article class="feature-card reveal">
+            <span class="feature-icon"><svg class="icon"><use href="#i-refresh" /></svg></span>
+            <h3>Тихие обновления</h3>
+            <p>Лаунчер сам проверяет свежую версию. Один клик — и у вас обновление без переустановки аккаунтов и сборок.</p>
+            <span class="feature-tag">автообновление</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="section showcase" id="showcase">
+        <div class="section-head reveal">
+          <span class="eyebrow"><svg class="icon"><use href="#i-monitor" /></svg> Интерфейс</span>
+          <h2>Всё важное на одном экране.</h2>
+          <p>Никаких вкладок из 2015-го. Только понятные действия и статусы, которые действительно нужны.</p>
+        </div>
+        <div class="showcase-tabs reveal" role="tablist" aria-label="Экраны лаунчера">
+          <button type="button" class="showcase-tab is-active" role="tab" aria-selected="true" data-shot="home" data-title="Главная" data-copy="Активная сборка, 3D-скин, время игры и память — всё на одном экране.">
+            <svg class="icon"><use href="#i-grid" /></svg> Главная
+          </button>
+          <button type="button" class="showcase-tab" role="tab" aria-selected="false" data-shot="modpacks" data-title="Готовые сборки" data-copy="Каталог Modrinth с фильтрами по версии и загрузчику. Установка в один клик.">
+            <svg class="icon"><use href="#i-box" /></svg> Готовые сборки
+          </button>
+          <button type="button" class="showcase-tab" role="tab" aria-selected="false" data-shot="friends" data-title="Друзья" data-copy="Кто в сети, у кого запущен Minecraft и что за сборка — без лишних вопросов.">
+            <svg class="icon"><use href="#i-users" /></svg> Друзья
+          </button>
+        </div>
+        <div class="showcase-layout reveal">
+          <div class="app-frame showcase-frame">
+            <div class="frame-bar">
+              <span class="frame-dots"><i></i><i></i><i></i></span>
+              <span class="frame-title">Street Launcher — <span id="shot-title">Главная</span></span>
+              <span class="frame-status"><span class="live-dot"></span> preview</span>
+            </div>
+            <div class="frame-body">
+              <img id="showcase-image" src="assets/shots/home.png" alt="Главный экран Street Launcher" width="1320" height="840" />
+            </div>
+          </div>
+          <div class="showcase-side">
+            <span class="eyebrow"><svg class="icon"><use href="#i-spark" /></svg> Живой интерфейс</span>
+            <h3 id="showcase-heading">Главная</h3>
+            <p id="showcase-copy">Активная сборка, 3D-скин, время игры и память — всё на одном экране.</p>
+            <ul class="check-list">
+              <li><svg class="icon"><use href="#i-check" /></svg> Мгновенный запуск и статус игры</li>
+              <li><svg class="icon"><use href="#i-check" /></svg> Сборки и аккаунты в одном месте</li>
+              <li><svg class="icon"><use href="#i-check" /></svg> Плавные анимации без лагов</li>
+            </ul>
+            <a class="text-link" href="#download">Попробовать в лаунчере <svg class="icon"><use href="#i-arrow" /></svg></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section split" id="modpacks">
+        <div class="split-copy reveal">
+          <span class="eyebrow"><svg class="icon"><use href="#i-box" /></svg> Готовые сборки</span>
+          <h2>Сборки, которые уже настроены.</h2>
+          <p>
+            Fabulously Optimized, Cobblemon, Better MC и десятки других — из каталога Modrinth.
+            Выберите сборку, нажмите «Установить», остальное сделает лаунчер.
+          </p>
+          <ul class="check-list">
+            <li><svg class="icon"><use href="#i-check" /></svg> Подбор модов под версию и загрузчик</li>
+            <li><svg class="icon"><use href="#i-check" /></svg> Fabric, Forge и NeoForge</li>
+            <li><svg class="icon"><use href="#i-check" /></svg> Ресурспаки, конфиги и настройки</li>
+            <li><svg class="icon"><use href="#i-check" /></svg> Обновление сборки без потери мира</li>
+          </ul>
+          <a class="btn btn-glass" href="#download"><svg class="icon"><use href="#i-download" /></svg> Скачать лаунчер</a>
+        </div>
+        <div class="split-visual reveal">
+          <div class="app-frame small-frame">
+            <div class="frame-bar">
+              <span class="frame-dots"><i></i><i></i><i></i></span>
+              <span class="frame-title">Готовые сборки</span>
+            </div>
+            <div class="frame-body">
+              <img src="assets/shots/modpacks.png" alt="Каталог готовых сборок в Street Launcher" loading="lazy" />
+            </div>
+          </div>
+          <div class="float-card float-pack">
+            <span class="float-icon"><svg class="icon"><use href="#i-box" /></svg></span>
+            <span><b>Fabulously Optimized</b><small>49 модов · Fabric 0.19.5</small></span>
+            <span class="status-chip is-online"><i></i> установлена</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section split reverse" id="friends">
+        <div class="split-copy reveal">
+          <span class="eyebrow"><svg class="icon"><use href="#i-users" /></svg> Друзья</span>
+          <h2>Друзья — прямо в лаунчере.</h2>
+          <p>
+            Добавьте друга по нику. Он появится в списке, как только откроет Street Launcher.
+            Видно, кто просто в лаунчере, а кто уже в игре — и в какой сборке.
+          </p>
+          <ul class="check-list">
+            <li><svg class="icon"><use href="#i-check" /></svg> Онлайн-статус в реальном времени</li>
+            <li><svg class="icon"><use href="#i-check" /></svg> Название запущенной сборки</li>
+            <li><svg class="icon"><use href="#i-check" /></svg> Только ник и статус — без личных данных</li>
+          </ul>
+          <div class="privacy-note">
+            <svg class="icon"><use href="#i-lock" /></svg>
+            <span>Публичный канал использует только ник Minecraft и статус запуска. Аккаунт и токены не передаются.</span>
+          </div>
+        </div>
+        <div class="friends-mock reveal">
+          <div class="mock-head">
+            <div>
+              <span class="eyebrow">Сообщество</span>
+              <h3>Друзья</h3>
+            </div>
+            <span class="service-pill"><span class="live-dot"></span> Сервис подключён</span>
+          </div>
+          <div class="mock-own">
+            <img src="https://mc-heads.net/avatar/redstre3t/48" alt="" width="38" height="38" loading="lazy" />
+            <span><b>redstre3t</b><small>В лаунчере</small></span>
+            <span class="status-chip is-online"><i></i> в сети</span>
+          </div>
+          <div class="mock-list">
+            <div class="mock-friend is-ingame">
+              <img src="https://mc-heads.net/avatar/Notch/48" alt="" width="40" height="40" loading="lazy" />
+              <span><b>Notch</b><small>Minecraft · Fabulously Optimized</small></span>
+              <span class="status-chip is-ingame"><i></i> в игре</span>
+            </div>
+            <div class="mock-friend">
+              <img src="https://mc-heads.net/avatar/Alex/48" alt="" width="40" height="40" loading="lazy" />
+              <span><b>Alex</b><small>Лаунчер открыт</small></span>
+              <span class="status-chip is-online"><i></i> в сети</span>
+            </div>
+            <div class="mock-friend is-offline">
+              <img src="https://mc-heads.net/avatar/Steve/48" alt="" width="40" height="40" loading="lazy" />
+              <span><b>Steve</b><small>Был(а) в сети 12 мин назад</small></span>
+              <span class="status-chip"><i></i> оффлайн</span>
+            </div>
+          </div>
+          <div class="mock-note"><svg class="icon"><use href="#i-users" /></svg> 2 в сети из 3</div>
+        </div>
+      </section>
+
+      <section class="section themes" id="themes">
+        <div class="themes-copy reveal">
+          <span class="eyebrow"><svg class="icon"><use href="#i-palette" /></svg> Редактор темы</span>
+          <h2>Интерфейс под ваш вайб.</h2>
+          <p>
+            Меняйте акценты, фон, прозрачность стекла и скругления. Выберите готовый пресет
+            или соберите свой — вкус не придётся подстраивать под лаунчер.
+          </p>
+          <div class="preset-row" aria-label="Быстрый выбор темы">
+            <button class="preset-dot is-active" type="button" data-preset="red" style="--a:#ff3d63;--b:#ff7a45" aria-label="Neon Red"></button>
+            <button class="preset-dot" type="button" data-preset="ice" style="--a:#38bdf8;--b:#6366f1" aria-label="Ice"></button>
+            <button class="preset-dot" type="button" data-preset="lime" style="--a:#a3e635;--b:#22d3ee" aria-label="Lime"></button>
+            <button class="preset-dot" type="button" data-preset="violet" style="--a:#a855f7;--b:#ec4899" aria-label="Violet"></button>
+            <button class="preset-dot" type="button" data-preset="gold" style="--a:#fbbf24;--b:#f97316" aria-label="Gold"></button>
+            <button class="preset-dot" type="button" data-preset="mono" style="--a:#e5e7eb;--b:#9ca3af" aria-label="Mono"></button>
+          </div>
+          <button class="btn btn-glass" type="button" data-open-theme>
+            <svg class="icon"><use href="#i-palette" /></svg>
+            Открыть редактор темы
+          </button>
+        </div>
+        <div class="theme-preview reveal" aria-hidden="true">
+          <div class="theme-preview-bar"><span class="frame-dots"><i></i><i></i><i></i></span><span>STR // theme.preview</span></div>
+          <div class="theme-preview-body">
+            <div class="tp-side">
+              <span class="tp-logo"></span>
+              <i class="is-active"></i><i></i><i></i><i></i><i></i>
+              <span class="tp-user"></span>
+            </div>
+            <div class="tp-main">
+              <div class="tp-hero">
+                <span class="tp-chip">АКТИВНАЯ СБОРКА</span>
+                <strong>Fabulously Optimized</strong>
+                <div class="tp-tags"><i>26.3</i><i>Fabric</i><i>Modrinth</i></div>
+                <span class="tp-play"></span>
+              </div>
+              <div class="tp-row"><span></span><span></span><span></span></div>
+              <div class="tp-row"><span></span><span></span><span></span></div>
+            </div>
+          </div>
+          <div class="tp-glow"></div>
+        </div>
+      </section>
+
+      <section class="section download" id="download">
+        <div class="download-panel reveal">
+          <div class="download-glow" aria-hidden="true"></div>
+          <div class="download-main">
+            <img class="download-icon" src="assets/icon.png" alt="Иконка Street Launcher" width="96" height="96" />
+            <div class="download-copy">
+              <span class="eyebrow"><span class="live-dot"></span> Актуальная версия</span>
+              <h2>Street Launcher 1.1.1</h2>
+              <p>Windows 10/11 · x64 · установщик ~110 МБ</p>
+              <div class="download-actions">
+                <a class="btn btn-primary btn-lg" href="downloads/StreetLauncher-Setup-1.1.1.exe" download>
+                  <svg class="icon"><use href="#i-download" /></svg>
+                  Скачать установщик
+                </a>
+                <a class="btn btn-glass btn-lg" href="downloads/StreetLauncher-Portable-1.1.1.exe" download>
+                  <svg class="icon"><use href="#i-box" /></svg>
+                  Портативная версия
+                </a>
+              </div>
+              <div class="download-note">
+                <svg class="icon"><use href="#i-refresh" /></svg>
+                Обновления приходят автоматически. Аккаунты, сборки и миры сохраняются.
+              </div>
+            </div>
+          </div>
+          <div class="download-side">
+            <h3>Что нужно</h3>
+            <ul class="check-list compact">
+              <li><svg class="icon"><use href="#i-check" /></svg> Windows 10 или 11 (x64)</li>
+              <li><svg class="icon"><use href="#i-check" /></svg> 4 ГБ ОЗУ минимум</li>
+              <li><svg class="icon"><use href="#i-check" /></svg> 2 ГБ свободного места</li>
+              <li><svg class="icon"><use href="#i-check" /></svg> Интернет для установки</li>
+            </ul>
+            <div class="download-accounts">
+              <span>Поддерживаются</span>
+              <div><b>Оффлайн</b><b>Ely.by</b><b>Microsoft</b></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section faq" id="faq">
+        <div class="section-head reveal">
+          <span class="eyebrow"><svg class="icon"><use href="#i-spark" /></svg> FAQ</span>
+          <h2>Коротко о главном.</h2>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item reveal" open>
+            <summary>Это бесплатно? <svg class="icon"><use href="#i-chevron" /></svg></summary>
+            <p>Да. Лаунчер бесплатный: все версии, загрузчики, моды и сборки доступны без подписки.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Нужна ли лицензия Minecraft? <svg class="icon"><use href="#i-chevron" /></svg></summary>
+            <p>Нет. Поддерживаются оффлайн-аккаунты, Ely.by и Microsoft. Для официального входа используется окно Microsoft — лаунчер не запрашивает пароль.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Какие версии игры поддерживаются? <svg class="icon"><use href="#i-chevron" /></svg></summary>
+            <p>От 1.8.9 до 26.3, включая Fabric, Forge, NeoForge, OptiFine и Forge + OptiFine. Снапшоты можно включить в настройках.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Куда устанавливаются сборки и миры? <svg class="icon"><use href="#i-chevron" /></svg></summary>
+            <p>В папку <code>%APPDATA%\StreetLauncher</code>. Открыть её можно из настроек лаунчера. При обновлении лаунчера данные не удаляются.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Как работают обновления? <svg class="icon"><use href="#i-chevron" /></svg></summary>
+            <p>Лаунчер проверяет подписанный канал обновлений и показывает баннер на главной. Один клик — загрузка, проверка файла и установка. Вручную искать новый установщик не нужно.</p>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-main">
+        <a class="brand" href="#top">
+          <img src="assets/icon.png" alt="" width="32" height="32" />
+          <span class="brand-name">STREET<em>LAUNCHER</em></span>
+        </a>
+        <p>Minecraft без границ. Все версии, сборки и друзья — в одном лаунчере.</p>
+      </div>
+      <div class="footer-links">
+        <div><span>Лаунчер</span><a href="#features">Возможности</a><a href="#showcase">Интерфейс</a><a href="#download">Скачать</a></div>
+        <div><span>Игра</span><a href="#modpacks">Сборки</a><a href="#friends">Друзья</a><a href="#themes">Темы</a></div>
+        <div><span>Помощь</span><a href="#faq">FAQ</a><a href="mailto:hello@streetlauncher.app">Написать нам</a></div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Street Launcher. Не связан с Mojang Studios и Microsoft.</span>
+        <span>Сделано с любовью к Minecraft.</span>
+      </div>
+    </footer>
+
+    <aside class="theme-panel" id="theme-panel" aria-label="Редактор темы" aria-hidden="true">
+      <div class="theme-panel-head">
+        <div>
+          <span class="eyebrow"><svg class="icon"><use href="#i-palette" /></svg> Оформление</span>
+          <h2>Тема сайта</h2>
+        </div>
+        <button class="icon-btn" type="button" aria-label="Закрыть редактор темы" data-close-theme>
+          <svg class="icon"><use href="#i-close" /></svg>
+        </button>
+      </div>
+      <div class="theme-panel-body">
+        <div class="setting-block">
+          <span class="setting-label">Пресеты</span>
+          <div class="theme-presets" role="group" aria-label="Пресеты темы">
+            <button type="button" data-preset="red" class="theme-preset is-active"><i style="--a:#ff3d63;--b:#ff7a45"></i><span>Neon Red</span></button>
+            <button type="button" data-preset="ice" class="theme-preset"><i style="--a:#38bdf8;--b:#6366f1"></i><span>Ice</span></button>
+            <button type="button" data-preset="lime" class="theme-preset"><i style="--a:#a3e635;--b:#22d3ee"></i><span>Lime</span></button>
+            <button type="button" data-preset="violet" class="theme-preset"><i style="--a:#a855f7;--b:#ec4899"></i><span>Violet</span></button>
+            <button type="button" data-preset="gold" class="theme-preset"><i style="--a:#fbbf24;--b:#f97316"></i><span>Gold</span></button>
+            <button type="button" data-preset="mono" class="theme-preset"><i style="--a:#e5e7eb;--b:#9ca3af"></i><span>Mono</span></button>
+          </div>
+        </div>
+        <div class="setting-block two-col">
+          <label class="color-field"><span class="setting-label">Акцент</span><input type="color" id="accent-input" value="#ff3d63" /></label>
+          <label class="color-field"><span class="setting-label">Второй цвет</span><input type="color" id="accent2-input" value="#ff7a45" /></label>
+        </div>
+        <div class="setting-block">
+          <span class="setting-label">Фон</span>
+          <div class="segmented" role="group" aria-label="Фон сайта">
+            <button type="button" data-bg-mode="aurora" class="is-active">Aurora</button>
+            <button type="button" data-bg-mode="mesh">Mesh</button>
+            <button type="button" data-bg-mode="grid">Grid</button>
+            <button type="button" data-bg-mode="plain">Plain</button>
+          </div>
+        </div>
+        <label class="range-field">
+          <span class="setting-label">Стекло <b data-value="glass">64%</b></span>
+          <input type="range" id="glass-range" min="0" max="100" value="64" />
+        </label>
+        <label class="range-field">
+          <span class="setting-label">Скругления <b data-value="radius">18px</b></span>
+          <input type="range" id="radius-range" min="0" max="28" value="18" />
+        </label>
+        <div class="setting-block toggles">
+          <label class="switch-field"><span>Градиентные заголовки</span><input type="checkbox" id="gradient-toggle" /><i></i></label>
+          <label class="switch-field"><span>Шум и текстура</span><input type="checkbox" id="noise-toggle" checked /><i></i></label>
+        </div>
+        <button class="btn btn-ghost btn-sm theme-reset" type="button" id="theme-reset">
+          <svg class="icon"><use href="#i-refresh" /></svg> Сбросить настройки
+        </button>
+      </div>
+    </aside>
+
+    <button class="theme-fab" type="button" aria-label="Открыть редактор темы" data-open-theme>
+      <svg class="icon"><use href="#i-palette" /></svg>
+      <span class="theme-fab-label">Тема</span>
+    </button>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
